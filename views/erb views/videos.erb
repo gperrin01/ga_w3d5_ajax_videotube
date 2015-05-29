@@ -3,7 +3,7 @@
 <%  @videos.each do |video|  %>
 <div class='video_frame'>
   <h4> <a href="/videos/<%= video['id'] %>"> <%= video['title'] %> </a> </h4>
-  <iframe width="340" height="250" src="<%= video['url_embed'] %>"  frameborder="0" allowfullscreen></iframe>
+  <iframe width="230" height="160" src="<%= video['url_embed'] %>"  frameborder="0" allowfullscreen></iframe>
 </div>
 <% end %>
 

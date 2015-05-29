@@ -5,20 +5,49 @@
 header {
   border: 2px solid black;
 }
+
+/*Navigation Menu*/
 nav li {
   display: inline-block;
   padding: 0 10px;
 }
 
-/* THE VIDEOS*/
+/*All sub frames*/
 .main_frame {
   border: 2px solid black;
   height: 100%;
   padding-bottom: 40px;
 }
+.sub_frame {
+  display: inline-block;
+  width: 100%;
+}
+.show {
+
+}
+/*.hide {
+  display: none;
+}*/
+
+/* Homepage videos*/
+#homepage {
+  border: 1px solid red;
+}
 .video_frame {
   display: inline-block;
 }
+
+
+/*upload*/
+#upload {
+  border: 1px solid blue;
+}
+/*show*/
+#show {
+  border: 1px solid green;
+}
+
+
 .edit-delete * {
   display: inline-block;
   margin-bottom: 10px;
