@@ -12,10 +12,7 @@ function getVideos() {
   }).done(function(data){
     $.each(data, function(index, video){
       addVideoToFrame(video);
-      if $.inArray(video.genre, allGenres) == -1 {
-        allGenres.push(video.genre);
-        addGenreToMenu(video.genre) 
-      }
+      addGenreToMenu(video.genre);
     })
   })
 }
@@ -26,8 +23,11 @@ function addVideoToFrame(video) {
 }
 
 function addGenreToMenu(genre){
-  $('#genre_list').append()
-  // if not already in genres, add to the menu
+  if ($.inArray(genre, allGenres) == -1) {
+    allGenres.push(genre);
+    $('#genre_list').append("<li><a href='/videos/"+genre+"'>"+ genre +"</a> </li>")
+  } 
+ // creaet ruby dynamic /videos/:genre
 }
 
 
