@@ -1,13 +1,13 @@
 <nav class='header_nav'>
   <ul id="genre_list">
-    <li><a href="/videos">Home</a></li>
-    <li><a href="/videos/upload">Upload Video</a></li>
+    <li class='nav_link' id="home_link" value='home'> <a href='#'>Home </a></li>
+    <li class='nav_link' id="upload_link" value="upload"><a href='#'>Upload Video</a></li>
   </ul>
 </nav>
 
 <div id="main_frame">
 
-  <div id="homepage" class="sub_frame show">   
+  <div id="homepage" class="sub_frame">   
     <h3>All our videos so far</h3>
     <div id="all_videos">
     </div>
@@ -15,15 +15,17 @@
 
 
   <div id="upload" class="sub_frame hide">  
-<!--     <h3>Bring them home!</h3>
+    <h3>Bring it home!</h3>
 
-    <form action='/videos' method='post'>
-      <input type='text' name='title' id='title' placeholder='Title' autofocus>
-      <input type='text' name='description' id='description' placeholder='Description' autofocus>
-      <input type='text' name='url' id='url' placeholder='URL' autofocus>
-      <input type='text' name='genre' id='genre' placeholder='Genre' autofocus>
-      <button>Dunk It</button>
-    </form>  --> 
+    <!-- do i need action and method?? -->
+    <!-- <form action='/videos' method='post'>   -->
+    <form>
+      <input type='text' name='title' id='input_title' placeholder='Title' autofocus>
+      <input type='text' name='description' id='input_description' placeholder='Description' autofocus>
+      <input type='text' name='url' id='input_url' placeholder='URL' autofocus>
+      <input type='text' name='genre' id='input_genre' placeholder='Genre' autofocus>
+      <button id='submit_upload'>Dunk It</button>
+    </form>  
   </div>
 
 

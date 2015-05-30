@@ -16,16 +16,19 @@ get '/videos' do
   end
 end
 
-# get '/videos/upload' do
-#   erb :upload
-# end
+post '/videos' do
+  url_embed = params[:url].gsub('watch?v=', 'embed/')
+  sql = "INSERT INTO videos (title, description, url, url_embed, genre) values ('#{params['title']}', '#{params['description']}', '#{params['url']}', '#{url_embed}', '#{params['genre']}' ) returning *"
+  @videos = run_sql(sql)
+  if request.xhr?
+    json @videos.to_a
+  else
+    erb :index
+  end
+end
 
-# post '/videos' do
-#   url_embed = format_for_embed(params['url'])
-#   sql = "INSERT INTO videos (title, description, url, url_embed, genre) values ('#{params['title']}', '#{params['description']}', '#{params['url']}', '#{url_embed}', '#{params['genre']}' )"
-#   run_sql(sql)
-#   redirect to ('/videos')
-# end
+#testng returning all 
+
 
 # get '/videos/:id' do
 #   sql = "select * from videos where id = #{params['id']}"
