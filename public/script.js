@@ -1,7 +1,13 @@
 $(document).ready(function() {
   getVideos();
-  $('#upload_link a').on('click', function(){
-    makeVisible($('#upload'));
+  // $('#upload_link a').on('click', function(){
+  //   makeVisible($('#upload'));
+  // })
+  // $('#home_link a').on('click', function(){
+  //   makeVisible($('#homepage'));
+  // })
+  $('.nav_link a').on('click', function(){
+    makeVisible( $('#'+$(this).parent().attr('value')));
   })
   $('#submit_upload').on('click', createVideo);
 })
