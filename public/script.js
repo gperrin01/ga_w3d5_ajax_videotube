@@ -51,7 +51,9 @@ function createVideo(){
     dataType: 'json'
   }).done(function(data){
     addVideoToFrame(data[0]);
+    addGenreToMenu(data[0].genre);
     makeVisible($('#homepage'));
+    // Need to add to genres!
   })
 }
 
