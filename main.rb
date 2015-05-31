@@ -27,7 +27,16 @@ post '/videos' do
   end
 end
 
-#testng returning all 
+get '/videos/:id' do 
+  sql = "select * from videos where id = #{params[:id]};"
+  @video = run_sql(sql)
+  if request.xhr?
+    json @video.to_a
+  else
+    redirect to '/videos'
+  end
+
+end
 
 
 # get '/videos/:id' do

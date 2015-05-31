@@ -1,15 +1,19 @@
 $(document).ready(function() {
   getVideos();
-  // $('#upload_link a').on('click', function(){
-  //   makeVisible($('#upload'));
-  // })
-  // $('#home_link a').on('click', function(){
-  //   makeVisible($('#homepage'));
-  // })
+  $('#all_videos').on('click', '.video_frame a', function() {
+    showVideo($(this).data('id'));
+  })
+  $('#submit_upload').on('click', createVideo);
   $('.nav_link a').on('click', function(){
     makeVisible( $('#'+$(this).parent().attr('value')));
   })
-  $('#submit_upload').on('click', createVideo);
+
+  $('#show').on('click', '#edit-button', function() {
+    editVideo($(this).data('id'));
+  })
+  $('#show').on('click', 'form>button', function() {deleteVideo($(this).data('id'));
+  })
+
 })
 
 var allGenres = [];
@@ -29,12 +33,13 @@ function getVideos() {
 
 function addVideoToFrame(video) {
   var url_embed = video.url.replace('watch?v=', 'embed/');
-  $("<div class='video_frame'> <h5><a href='/videos/"+video.id+"'>" + video.title + "</a></h5> <iframe width='230' height='160' src='"+url_embed+"'> frameborder='0' allowfullscreen><iframe> </div>").prependTo('#all_videos');
+  $("<div class='video_frame'> <h5><a data-id=" +video.id+ " href='#'>" + video.title + "</a></h5> <iframe width='230' height='160' src='"+url_embed+"'> frameborder='0' allowfullscreen><iframe> </div>").prependTo('#all_videos');
+  // Removed the full a link " href='/videos/"+video.id+"
 }
 function addGenreToMenu(genre){
   if ($.inArray(genre, allGenres) == -1) {
     allGenres.push(genre);
-    $('#genre_list').append("<li class='nav_link' id='"+genre+"' value='"+genre+"'><a href='#'>" +genre+ "</a></li>");
+    $('#genre_list').append("<li class='nav_link' id='"+genre+"' value='show'><a href='#'>" +genre+ "</a></li>");
   } 
 }
 
@@ -44,7 +49,6 @@ function makeVisible($sub_frame) {
 }
 
 function createVideo(){
-  // ajax request - post /videos - ruby sql insert into videos returning *
   event.preventDefault;
   $.ajax({
     type: 'post',
@@ -59,20 +63,43 @@ function createVideo(){
     addVideoToFrame(data[0]);
     addGenreToMenu(data[0].genre);
     makeVisible($('#homepage'));
-    // Need to add to genres!
+  })
+}
+
+function showVideo(id){
+  makeVisible($('#show'));
+  $.ajax({
+    type: 'get',
+    url: '/videos/'+id,
+    data: {id: id},
+    dataType: 'json'
+  }).done(function(data){
+    var video = data[0];
+    debugger;
+    $('#id h3:first').html(video.title);
+    $('#edit-delete').html("<button id='edit-button' data-id="+video.id+"> <a href='#'>Edit</a></button>  <button id='delete-button' data-id="+video.id+"> <a href='#'>Delete</a></button>  "
+      // <form action='/videos/"+video.id+"/delete' method='post'>   
+      // <button name='_method' value='delete'> Off the roster! </button>
+      //  </form>      
+      + "  <iframe width='850' height='480' src='"+video.url_embed+"' frameborder='0'allowfullscreen></iframe>"
+      );
   })
 }
 
 
 
+function editVideo() {
+
+}
+
+function deleteVideo() {
+
+}
+
 
 
 
 // TO DO
-// Click on upload -> load form for new in database (post /videos/new)
-//                 -> hide homepage and show upload 
-//                 -> add video to frame / add genre to menu
-
 // Click on genres -> show only video of the genre - creaet ruby dynamic /videos/:genre to get genre= from database
 
 
