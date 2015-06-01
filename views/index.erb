@@ -32,19 +32,28 @@
   <div id="show" class="sub_frame hide">
     <h3> </h3>
 
-    <div id="edit-delete">
-<!--       <button id='edit-button' data-id=><a href="/videos/ @video['id'] /edit">Edit</a></button>
-      <form action="/videos/ @video['id'] /delete" method="post">
-        <button name="_method" value="delete"> Off the roster! </button>
-      </form>
-    </div>
-
-      <iframe width="850" height="480" src=" @video['url_embed'] "  frameborder="0" allowfullscreen></iframe> -->
+<!--     <div id="edit-delete">
+      <button id='edit-button' data-id="+video.id+"> <a href='#'>Edit</a>
+      </button>  
+      <button id='delete-button' data-id="+video.id+"> <a href='#'>Delete</a></button>  
+      <iframe width='850' height='480' src='"video.url_embed+"' frameborder='0'allowfullscreen></iframe>  
+      <ul> <li>"+video.name+"</li> <li>"+video.description+"</li> <li>"+video.url+"</li>");
+      </ul> -->
     </div>
 
 
   <div id="edit" class="sub_frame hide">
+      <h3>Time to change</h3>
 
+    <!-- do i need action and method?? -->
+    <!-- <form action='/videos' method='post'>   -->
+    <form>
+      <input type='text' name='title' id='input_title' value='Title' autofocus>
+      <input type='text' name='description' id='input_description' value='Description' autofocus>
+      <input type='text' name='url' id='input_url' value='URL' autofocus>
+      <input type='text' name='genre' id='input_genre' value='Genre' autofocus>
+      <button id='submit_upload'>Dunk It</button>
+    </form>  
   </div>
 
 

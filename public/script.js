@@ -8,10 +8,10 @@ $(document).ready(function() {
     makeVisible( $('#'+$(this).parent().attr('value')));
   })
 
-  $('#show').on('click', '#edit-button', function() {
-    editVideo($(this).data('id'));
-  })
-  $('#show').on('click', 'form>button', function() {deleteVideo($(this).data('id'));
+  $('#show').on('click', '#edit-button', editVideo)
+
+  $('#show').on('click', 'form>button', function(){
+    deleteVideo($(this).data('id'));
   })
 
 })
@@ -75,21 +75,27 @@ function showVideo(id){
     dataType: 'json'
   }).done(function(data){
     var video = data[0];
-    debugger;
     $('#id h3:first').html(video.title);
-    $('#edit-delete').html("<button id='edit-button' data-id="+video.id+"> <a href='#'>Edit</a></button>  <button id='delete-button' data-id="+video.id+"> <a href='#'>Delete</a></button>  "
-      // <form action='/videos/"+video.id+"/delete' method='post'>   
-      // <button name='_method' value='delete'> Off the roster! </button>
-      //  </form>      
-      + "  <iframe width='850' height='480' src='"+video.url_embed+"' frameborder='0'allowfullscreen></iframe>"
-      );
+    $('#edit-delete').html("<button id='edit-button' data-id="+video.id+"> <a href='#'>Edit</a></button>  <button id='delete-button' data-id="+video.id+"> <a href='#'>Delete</a></button>  <iframe width='850' height='480' src='"video.url_embed+"' frameborder='0' allowfullscreen></iframe>  <ul> <li>"+video.name+"</li> <li>"+video.description+"</li> <li>"+video.url+"</li></ul>");
   })
 }
 
 
 
 function editVideo() {
+    makeVisible($('#edit'));
+    var id = $(this)
+    $('#input_title')
+    debugger;
 
+    $.ajax({
+    type: 'post',
+    url: '/videos/'+id,
+    data: {id: id},
+    dataType: 'json'
+  }).done(function(data){
+    debugger;
+  })
 }
 
 function deleteVideo() {
@@ -102,4 +108,6 @@ function deleteVideo() {
 // TO DO
 // Click on genres -> show only video of the genre - creaet ruby dynamic /videos/:genre to get genre= from database
 
-
+      // <form action='/videos/"+video.id+"/delete' method='post'>   
+      // <button name='_method' value='delete'> Off the roster! </button>
+      //  </form>     
