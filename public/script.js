@@ -75,8 +75,8 @@ function showVideo(id){
     dataType: 'json'
   }).done(function(data){
     var video = data[0];
-    $('#id h3:first').html(video.title);
-    $('#edit-delete').html("<button id='edit-button' data-id="+video.id+"> <a href='#'>Edit</a></button>  <button id='delete-button' data-id="+video.id+"> <a href='#'>Delete</a></button>  <iframe width='850' height='480' src='"video.url_embed+"' frameborder='0' allowfullscreen></iframe>  <ul> <li>"+video.name+"</li> <li>"+video.description+"</li> <li>"+video.url+"</li></ul>");
+    $('#id h3').html(video.title);
+    $('#edit-delete').html("<button id='edit-button' data-id="+video.id+"> <a href='#'>Edit</a></button>  <button id='delete-button' data-id="+video.id+"> <a href='#'>Delete</a></button>  <iframe width='850' height='480' src='"+video.url_embed+"' frameborder='0' allowfullscreen></iframe>  <ul> <li>"+video.name+"</li> <li>"+video.description+"</li> <li>"+video.url+"</li></ul>");
   })
 }
 
@@ -84,10 +84,8 @@ function showVideo(id){
 
 function editVideo() {
     makeVisible($('#edit'));
-    var id = $(this)
-    $('#input_title')
-    debugger;
-
+    var id = $(this).data('id');
+    $('#input_title_foredit')
     $.ajax({
     type: 'post',
     url: '/videos/'+id,
